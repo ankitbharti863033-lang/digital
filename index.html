@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>the local shop | let's grow your business</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg-light: #f8fafc;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --whatsapp: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .cart-icon {
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--bg-light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://i.ibb.co/6cpV0v7d/Digital-Marketing-hero-banners-Pre-Designed-Illustrator-Graphics-Creative-Market.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 0 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+        }
+        .btn-main {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn-main:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Products Carousel */
+        .products-section {
+            padding: 4rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding-bottom: 2rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        /* Hide scrollbar for cleaner look */
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .product-card {
+            min-width: 280px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            scroll-snap-align: start;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .btn-add {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--bg-light);
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-add:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Checkout Section */
+        .checkout-section {
+            background: white;
+            padding: 4rem 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        .checkout-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 12px;
+        }
+        .cart-summary {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #cbd5e1;
+        }
+        .cart-summary ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .cart-summary li {
+            padding: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .btn-submit {
+            width: 100%;
+            background: var(--text-dark);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* WhatsApp Floating Button */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--whatsapp);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">the local shop</div>
+        <div class="cart-icon" onclick="document.getElementById('checkout').scrollIntoView();">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>the local shop</h1>
+            <p>let's grow your business</p>
+            <button class="btn-main" onclick="document.getElementById('products').scrollIntoView();">Shop Now</button>
+        </div>
+    </header>
+
+    <section id="products" class="products-section">
+        <h2 class="section-title">Our Services</h2>
+        <div class="carousel">
+            <div class="product-card">
+                <img src="https://i.ibb.co/nMPZ3FjR/download-4.jpg" alt="Digital Marketing" class="product-img">
+                <div class="product-info">
+                    <h3>Digital Marketing Package</h3>
+                    <button class="btn-add" onclick="addToCart('Digital Marketing Package')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ibb.co/n8NWyGG4/download-3.jpg" alt="Social Media" class="product-img">
+                <div class="product-info">
+                    <h3>Social Media Management</h3>
+                    <button class="btn-add" onclick="addToCart('Social Media Management')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ibb.co/qMSHLk7G/download-2.jpg" alt="Reels Creation" class="product-img">
+                <div class="product-info">
+                    <h3>Viral Reels Creation</h3>
+                    <button class="btn-add" onclick="addToCart('Viral Reels Creation')">Add to Cart</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="https://i.ibb.co/SZ3RZdc/download-1.jpg" alt="Logo Design" class="product-img">
+                <div class="product-info">
+                    <h3>Custom Logo Design</h3>
+                    <button class="btn-add" onclick="addToCart('Custom Logo Design')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="checkout" class="checkout-section">
+        <div class="checkout-container">
+            <h2 style="margin-bottom: 1rem;">Complete Your Order</h2>
+            
+            <div class="cart-summary">
+                <strong>Your Items:</strong>
+                <ul id="cart-items">
+                    <li>Your cart is currently empty.</li>
+                </ul>
+            </div>
+
+            <form id="orderForm" onsubmit="sendOrder(event)">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="+91 00000 00000">
+                </div>
+                <button type="submit" class="btn-submit">Send Order</button>
+            </form>
+        </div>
+    </section>
+
+    <a href="https://wa.me/9999999999" class="wa-float" target="_blank">
+        <svg width="35" height="35" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.06-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <script>
+        let cart = [];
+
+        function addToCart(itemName) {
+            cart.push(itemName);
+            updateCartUI();
+            
+            // Optional: Provide visual feedback
+            alert(itemName + " added to cart!");
+        }
+
+        function updateCartUI() {
+            const cartList = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            
+            cartCount.textContent = cart.length;
+            cartList.innerHTML = ''; // Clear current list
+
+            if (cart.length === 0) {
+                cartList.innerHTML = '<li>Your cart is currently empty.</li>';
+                return;
+            }
+
+            // Count duplicates for cleaner display
+            const itemCounts = {};
+            cart.forEach(item => {
+                itemCounts[item] = (itemCounts[item] || 0) + 1;
+            });
+
+            // Render list
+            for (const [item, count] of Object.entries(itemCounts)) {
+                const li = document.createElement('li');
+                li.textContent = `${count}x ${item}`;
+                cartList.appendChild(li);
+            }
+        }
+
+        function sendOrder(event) {
+            event.preventDefault(); // Prevent page reload
+
+            if (cart.length === 0) {
+                alert("Please add at least one item to your cart before sending an order.");
+                return;
+            }
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Format the items into a clean list for the email
+            let orderDetails = "Order Details:%0D%0A";
+            const itemCounts = {};
+            cart.forEach(item => {
+                itemCounts[item] = (itemCounts[item] || 0) + 1;
+            });
+            for (const [item, count] of Object.entries(itemCounts)) {
+                orderDetails += `- ${count}x ${item}%0D%0A`;
+            }
+
+            // Construct the mailto link
+            const email = "ankitbharti863033@gmail.com";
+            const subject = encodeURIComponent("New Order from " + name);
+            const body = `Customer Name: ${name}%0D%0APhone Number: ${phone}%0D%0A%0D%0A${orderDetails}`;
+
+            // Open the default email client
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
